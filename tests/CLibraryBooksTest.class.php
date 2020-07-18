@@ -27,6 +27,34 @@ class CLibraryBooksTest extends PHPUnit\Framework\TestCase {
         $this->assertEquals($matchedArray, $actualArray);
 	}
 
+    public function testcreate(): void {
+
+        $dataArray = [
+                        "author" => "sampleAuthor",
+                        "title" => "sampleTitle",
+                        "isbn" => "1234567890110",
+                        "release_date" => "2020-10-20"
+                    ];
+
+        $response = $this->http->request('POST', 'createLibraryBook.php', [GuzzleHttp\RequestOptions::JSON => $dataArray]);
+        $this->assertEquals(201, $response->getStatusCode());
+    }
+
+    public function testcreatewithincompletedata(): void {
+        $this->expectException(GuzzleHttp\Exception\ClientException::class);
+        $this->expectExceptionMessage(sprintf('Cannot add book to library [Incomplete data].'));
+        $this->expectExceptionCode(400);
+
+        $dataArray = [
+                        "author" => "sampleAuthor",
+                        "title" => "",
+                        "isbn" => "1234567890110",
+                        "release_date" => "2020-10-20"
+                    ];
+
+        $response = $this->http->request('POST', 'createLibraryBook.php', [GuzzleHttp\RequestOptions::JSON => $dataArray]);
+    }
+
 	public function tearDown(): void {
         $this->http = null;
     }

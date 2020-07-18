@@ -24,5 +24,37 @@ class CLibraryBooks{
 	    
 	    return $sqlPrepared;
 	}
+
+    public function create() {
+        $query = "INSERT INTO
+                    " . $this->tableName . "
+                  (`author`, `title`, `isbn`, `release_date`, `created_on`, `updated_on`)
+                VALUE (
+                        :author, 
+                        :title, 
+                        :isbn, 
+                        :release_date, 
+                        NOW(),
+                        NOW() 
+                    )";
+      
+        $sqlPrepared = $this->connection->prepare($query);
+      
+        $this->author       = htmlspecialchars(strip_tags($this->author));
+        $this->title        = htmlspecialchars(strip_tags($this->title));
+        $this->isbn         = htmlspecialchars(strip_tags($this->isbn));
+        $this->release_date = htmlspecialchars(strip_tags($this->release_date));
+      
+        $sqlPrepared->bindParam(":author", $this->author);
+        $sqlPrepared->bindParam(":title", $this->title);
+        $sqlPrepared->bindParam(":isbn", $this->isbn);
+        $sqlPrepared->bindParam(":release_date", $this->release_date);
+        
+        if( $sqlPrepared->execute() ) {
+            return true;
+        }
+      
+        return false;
+    }
 }
 ?>

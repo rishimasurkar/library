@@ -13,7 +13,6 @@ $objLibraryBooks 		= new CLibraryBooks($libraryDbConnection);
 $queryStatement 		= $objLibraryBooks->read();
 $rowCount 				= $queryStatement->rowCount();
 
-// check if more than 0 record found
 if($rowCount>0) {
   
     $libraryBooks=array();
@@ -34,13 +33,11 @@ if($rowCount>0) {
     }
 
     http_response_code(200);
-  
     echo json_encode($libraryBooks);
 
 } else {
 
     http_response_code(404);
-  
     echo json_encode(
         array("message" => "Sorry! no books can be found.")
     );
