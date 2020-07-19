@@ -56,5 +56,20 @@ class CLibraryBooks{
       
         return false;
     }
+
+    public function delete() {
+      
+        $query = "DELETE FROM " . $this->tableName . " WHERE id = ?";
+        $sqlPrepared = $this->connection->prepare($query);
+        
+        $this->id=htmlspecialchars(strip_tags($this->id));
+        $sqlPrepared->bindParam(1, $this->id);
+
+        if($sqlPrepared->execute()) {
+            return true;
+        }
+      
+        return false;
+    }
 }
 ?>
