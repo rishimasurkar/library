@@ -1,19 +1,28 @@
-# library API
+# Library API
 
-## Tech Stack
-Language		: PHP 7.2
-Database 		: Mysql 5.7 
-Unit Test FW 	: PHPUnit 8.5.8
-HTTP Client 	: Guzzle 7.0
-GitHub 			: https://github.com/rishimasurkar/library 
-Host 			: AWS [free teir]
-Host URL 		: http://ec2-54-82-200-16.compute-1.amazonaws.com
+Contains the REST endpoints for handling a library. 
+Below are the existing endpoints.
 
+  - Read (getLibraryBooks)
+  - Create (createLibraryBook)
+  - Delete (deleteLibraryBook)
 
-The Library API contains the following endpoints.
+# Tech Stack
 
-1. READ 
-	EndPoint - getLibraryBooks.php
+  - Language : PHP 7.2
+  - Database : Mysql 5.7
+  - Unit Test FW : PHPUnit 8.5.8
+  - HTTP Client : Guzzle 7.0
+  - GitHub Repo : https://github.com/rishimasurkar/library
+  - Host : AWS [free teir]
+  - Host URL : http://ec2-54-82-200-16.compute-1.amazonaws.com
+
+## Endpoints
+* URL - http://ec2-54-82-200-16.compute-1.amazonaws.com/library/api/entities/libraryBooks/
+
+### Read Endpoint
+```sh
+    EndPoint - getLibraryBooks.php
 	URL - http://ec2-54-82-200-16.compute-1.amazonaws.com/library/api/entities/libraryBooks/getLibraryBooks.php
 	Content Type - application/json
 	Input - NA
@@ -43,9 +52,11 @@ The Library API contains the following endpoints.
 	        }
 	    ]
 	}
+```
 
-2. CREATE 
-	EndPoint - createLibraryBook.php
+### Create Endpoint
+```sh
+    EndPoint - createLibraryBook.php
 	URL - http://ec2-54-82-200-16.compute-1.amazonaws.com/library/api/entities/libraryBooks/createLibraryBook.php
 	Content Type - application/json
 	Input - 
@@ -59,9 +70,11 @@ The Library API contains the following endpoints.
 		{
 		    "message": "Book added to the library!"
 		}
+```
 
-3. DELETE [
-	EndPoint - deleteLibraryBook.php
+### Delete Endpoint
+```sh
+    EndPoint - deleteLibraryBook.php
 	URL - http://ec2-54-82-200-16.compute-1.amazonaws.com/library/api/entities/libraryBooks/deleteLibraryBook.php
 	Content Type - application/json
 	Input - 
@@ -72,3 +85,4 @@ The Library API contains the following endpoints.
 		{
 		    "message": "Book deleted from the library!"
 		}
+```
